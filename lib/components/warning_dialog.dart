@@ -22,7 +22,7 @@ class MyWarningDialog extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: const Text('Approve'),
+            child: const Text('OK'),
           )
         ]);
   }

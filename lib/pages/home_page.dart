@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:minimal_addiciton_beater/pages/settings_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -8,7 +9,17 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("addiction beater"),
-        actions: [IconButton(onPressed: () => {}, icon: Icon(Icons.settings))],
+        actions: [
+          IconButton(
+              onPressed: () => {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SettingsPage()),
+                    )
+                  },
+              icon: const Icon(Icons.settings)),
+        ],
       ),
       drawer: Drawer(),
     );
