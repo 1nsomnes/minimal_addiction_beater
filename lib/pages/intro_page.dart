@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:minimal_addiciton_beater/pages/home_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class IntroPage extends StatelessWidget {
   const IntroPage({super.key});
+
+  Future<void> _navigateToHome(BuildContext context) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isIntroSeen', true);
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => const HomePage()));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +44,7 @@ class IntroPage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 70, vertical: 10),
             child: TextButton(
               onPressed: () {
-                // Add your onPressed logic here
+                _navigateToHome(context);
               },
               style: TextButton.styleFrom(
                 backgroundColor: Colors.black,
