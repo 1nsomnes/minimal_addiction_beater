@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:minimal_addiciton_beater/pages/home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class IntroPage extends StatelessWidget {
+class IntroPage extends StatefulWidget {
   const IntroPage({super.key});
+
+  @override
+  State<IntroPage> createState() => _IntroPageState();
+}
+
+class _IntroPageState extends State<IntroPage> {
+  String _addiction = "";
 
   Future<void> _navigateToHome(BuildContext context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -30,10 +37,11 @@ class IntroPage extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
             child: TextField(
-              decoration: InputDecoration(
+              onChanged: (value) => {_addiction = value},
+              decoration: const InputDecoration(
                   enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.black),
                       borderRadius: BorderRadius.all(Radius.circular(20))),
@@ -44,7 +52,29 @@ class IntroPage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 70, vertical: 10),
             child: TextButton(
               onPressed: () {
-                _navigateToHome(context);
+                if (_addiction.isEmpty) {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18)),
+                            elevation: 16,
+                            title: const Text('Invalid Addiction'),
+                            content: const Text(
+                                "The addictin you have proived is invalid, please try again."),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: const Text('Approve'),
+                              )
+                            ]);
+                      });
+                } else {
+                  _navigateToHome(context);
+                }
               },
               style: TextButton.styleFrom(
                 backgroundColor: Colors.black,
