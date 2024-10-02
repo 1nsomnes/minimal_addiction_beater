@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:minimal_addiciton_beater/components/warning_dialog.dart';
 import 'package:minimal_addiciton_beater/pages/home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -56,21 +57,11 @@ class _IntroPageState extends State<IntroPage> {
                   showDialog(
                       context: context,
                       builder: (context) {
-                        return AlertDialog(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18)),
-                            elevation: 16,
-                            title: const Text('Invalid Addiction'),
-                            content: const Text(
-                                "The addictin you have proived is invalid, please try again."),
-                            actions: <Widget>[
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                                child: const Text('Approve'),
-                              )
-                            ]);
+                        return const MyWarningDialog(
+                          title: "Invalid Addiction",
+                          description:
+                              "Sorry, your addiction is invalid. You must enter something to continue",
+                        );
                       });
                 } else {
                   _navigateToHome(context);
