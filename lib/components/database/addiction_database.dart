@@ -6,6 +6,16 @@ import 'package:path_provider/path_provider.dart';
 class AddictionDatabase extends ChangeNotifier {
   static late Isar isar;
 
+  int _currentIndex = 0;
+  get currentIndex {
+    return _currentIndex;
+  }
+
+  set currentIndex(val) {
+    _currentIndex = val;
+    notifyListeners();
+  }
+
   // initalize
   static Future<void> initialize() async {
     final dir = await getApplicationCacheDirectory();
