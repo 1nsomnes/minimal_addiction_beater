@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:minimal_addiciton_beater/components/heatmap.dart';
+import 'package:minimal_addiciton_beater/components/popups/get_input_dialog.dart';
 import 'package:minimal_addiciton_beater/pages/settings_page.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -31,7 +32,14 @@ class HomePage extends StatelessWidget {
       ),
       drawer: const Drawer(),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          showDialog(
+              context: context,
+              builder: (context) => const MyInputDialog(
+                    title: "Enter an Addiction",
+                    placeholder: "Addiction...",
+                  ));
+        },
         child: const Icon(Icons.add),
       ),
       body: Center(
