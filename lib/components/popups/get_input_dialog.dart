@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:minimal_addiciton_beater/theme/theme_provider.dart';
-import 'package:provider/provider.dart';
 
 class MyInputDialog extends StatelessWidget {
   const MyInputDialog({

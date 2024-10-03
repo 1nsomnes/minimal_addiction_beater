@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:minimal_addiciton_beater/components/database/addiction_database.dart';
 import 'package:minimal_addiciton_beater/pages/home_page.dart';
 import 'package:minimal_addiciton_beater/pages/intro_page.dart';
 import 'package:minimal_addiciton_beater/theme/theme_provider.dart';
@@ -6,11 +7,19 @@ import 'package:minimal_addiciton_beater/utilities/app_scroll_behavior.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(ChangeNotifierProvider(
-    create: (context) => ThemeProvider(),
-    child: const MyApp(),
-  ));
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await AddictionDatabase.initialize();
+
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AddictionDatabase()),
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatefulWidget {
