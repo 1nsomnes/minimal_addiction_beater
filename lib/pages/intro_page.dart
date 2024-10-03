@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:minimal_addiciton_beater/components/warning_dialog.dart';
+import 'package:minimal_addiciton_beater/components/popups/warning_dialog.dart';
 import 'package:minimal_addiciton_beater/pages/home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_heatmap_calendar/flutter_heatmap_calendar.dart';
+import 'package:minimal_addiciton_beater/components/heatmap.dart';
 import 'package:minimal_addiciton_beater/pages/settings_page.dart';
 
 class HomePage extends StatelessWidget {
@@ -29,6 +31,13 @@ class HomePage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         child: const Icon(Icons.add),
+      ),
+      body: const Center(
+        child: const Column(
+          children: [
+            MyHeatMap(),
+          ],
+        ),
       ),
     );
   }
