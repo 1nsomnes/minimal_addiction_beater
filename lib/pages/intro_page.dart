@@ -60,7 +60,7 @@ class _IntroPageState extends State<IntroPage> {
                         return const MyWarningDialog(
                           title: "Invalid Addiction",
                           description:
-                              "Sorry, your addiction is invalid. You must enter something to continue",
+                              "Sorry, your addiction is invalid. You must enter something to continue.",
                         );
                       });
                 } else {

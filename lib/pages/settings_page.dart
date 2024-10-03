@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:minimal_addiciton_beater/theme/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -23,7 +25,13 @@ class SettingsPage extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-              child: CupertinoSwitch(value: false, onChanged: (val) => {}),
+              child: CupertinoSwitch(
+                value: Provider.of<ThemeProvider>(context).isDarkMode,
+                onChanged: (val) => {
+                  Provider.of<ThemeProvider>(context, listen: false)
+                      .toggleTheme()
+                },
+              ),
             )
           ],
         ),
