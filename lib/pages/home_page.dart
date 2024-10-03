@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:minimal_addiciton_beater/components/database/addiction_database.dart';
 import 'package:minimal_addiciton_beater/components/heatmap.dart';
 import 'package:minimal_addiciton_beater/components/popups/get_input_dialog.dart';
 import 'package:minimal_addiciton_beater/pages/settings_page.dart';
+import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
   final _controller = PageController();
-
-  Future<List<String>> _fetchDrawerItems() async {
-    return ['Item 1', 'Item 2', 'Item 3'];
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +28,17 @@ class HomePage extends StatelessWidget {
               icon: const Icon(Icons.settings)),
         ],
       ),
-      drawer: const Drawer(),
+      drawer: Drawer(
+        child: ListView.builder(
+          itemCount:
+              Provider.of<AddictionDatabase>(context).currentAddictions.length,
+          itemBuilder: (BuildContext context, int index) {
+            return Text(Provider.of<AddictionDatabase>(context)
+                .currentAddictions[index]
+                .name);
+          },
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showDialog(

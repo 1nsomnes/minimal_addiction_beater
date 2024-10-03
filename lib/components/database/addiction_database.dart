@@ -28,7 +28,8 @@ class AddictionDatabase extends ChangeNotifier {
   Future<void> addAddiction(String addiction, DateTime date) async {
     final newAddiction = Addiction()
       ..name = addiction
-      ..dates.add(date);
+      ..dates = []
+      ..startDate = date;
 
     await isar.writeTxn(() => isar.addictions.put(newAddiction));
 
@@ -44,5 +45,7 @@ class AddictionDatabase extends ChangeNotifier {
         await isar.addictions.delete(addictionToDelete.id);
       }
     });
+
+    fetchAddictions();
   }
 }

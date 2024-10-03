@@ -11,5 +11,6 @@ class Addiction {
   @Index(unique: true)
   late String name;
 
+  late DateTime startDate;
   late List<DateTime> dates;
 }

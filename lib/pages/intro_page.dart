@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:minimal_addiciton_beater/components/database/addiction_database.dart';
 import 'package:minimal_addiciton_beater/components/popups/warning_dialog.dart';
 import 'package:minimal_addiciton_beater/pages/home_page.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class IntroPage extends StatefulWidget {
@@ -64,6 +66,8 @@ class _IntroPageState extends State<IntroPage> {
                         );
                       });
                 } else {
+                  Provider.of<AddictionDatabase>(context, listen: false)
+                      .addAddiction(_addiction, DateTime.now());
                   _navigateToHome(context);
                 }
               },

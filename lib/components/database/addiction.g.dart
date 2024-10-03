@@ -26,6 +26,11 @@ const AddictionSchema = CollectionSchema(
       id: 1,
       name: r'name',
       type: IsarType.string,
+    ),
+    r'startDate': PropertySchema(
+      id: 2,
+      name: r'startDate',
+      type: IsarType.dateTime,
     )
   },
   estimateSize: _addictionEstimateSize,
@@ -75,6 +80,7 @@ void _addictionSerialize(
 ) {
   writer.writeDateTimeList(offsets[0], object.dates);
   writer.writeString(offsets[1], object.name);
+  writer.writeDateTime(offsets[2], object.startDate);
 }
 
 Addiction _addictionDeserialize(
@@ -87,6 +93,7 @@ Addiction _addictionDeserialize(
   object.dates = reader.readDateTimeList(offsets[0]) ?? [];
   object.id = id;
   object.name = reader.readString(offsets[1]);
+  object.startDate = reader.readDateTime(offsets[2]);
   return object;
 }
 
@@ -101,6 +108,8 @@ P _addictionDeserializeProp<P>(
       return (reader.readDateTimeList(offset) ?? []) as P;
     case 1:
       return (reader.readString(offset)) as P;
+    case 2:
+      return (reader.readDateTime(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
@@ -618,6 +627,60 @@ extension AddictionQueryFilter
       ));
     });
   }
+
+  QueryBuilder<Addiction, Addiction, QAfterFilterCondition> startDateEqualTo(
+      DateTime value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'startDate',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<Addiction, Addiction, QAfterFilterCondition>
+      startDateGreaterThan(
+    DateTime value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'startDate',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<Addiction, Addiction, QAfterFilterCondition> startDateLessThan(
+    DateTime value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'startDate',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<Addiction, Addiction, QAfterFilterCondition> startDateBetween(
+    DateTime lower,
+    DateTime upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'startDate',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
 }
 
 extension AddictionQueryObject
@@ -636,6 +699,18 @@ extension AddictionQuerySortBy on QueryBuilder<Addiction, Addiction, QSortBy> {
   QueryBuilder<Addiction, Addiction, QAfterSortBy> sortByNameDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.desc);
+    });
+  }
+
+  QueryBuilder<Addiction, Addiction, QAfterSortBy> sortByStartDate() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'startDate', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Addiction, Addiction, QAfterSortBy> sortByStartDateDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'startDate', Sort.desc);
     });
   }
 }
@@ -665,6 +740,18 @@ extension AddictionQuerySortThenBy
       return query.addSortBy(r'name', Sort.desc);
     });
   }
+
+  QueryBuilder<Addiction, Addiction, QAfterSortBy> thenByStartDate() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'startDate', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Addiction, Addiction, QAfterSortBy> thenByStartDateDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'startDate', Sort.desc);
+    });
+  }
 }
 
 extension AddictionQueryWhereDistinct
@@ -679,6 +766,12 @@ extension AddictionQueryWhereDistinct
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'name', caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<Addiction, Addiction, QDistinct> distinctByStartDate() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'startDate');
     });
   }
 }
@@ -700,6 +793,12 @@ extension AddictionQueryProperty
   QueryBuilder<Addiction, String, QQueryOperations> nameProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'name');
+    });
+  }
+
+  QueryBuilder<Addiction, DateTime, QQueryOperations> startDateProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'startDate');
     });
   }
 }
