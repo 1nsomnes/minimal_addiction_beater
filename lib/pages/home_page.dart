@@ -4,7 +4,9 @@ import 'package:minimal_addiciton_beater/components/heatmap.dart';
 import 'package:minimal_addiciton_beater/pages/settings_page.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
+
+  final _controller = PageController();
 
   Future<List<String>> _fetchDrawerItems() async {
     return ['Item 1', 'Item 2', 'Item 3'];
@@ -32,10 +34,17 @@ class HomePage extends StatelessWidget {
         onPressed: () {},
         child: const Icon(Icons.add),
       ),
-      body: const Center(
-        child: const Column(
+      body: Center(
+        child: Column(
           children: [
-            MyHeatMap(),
+            SizedBox(
+              height: 325,
+              child: PageView(
+                controller: _controller,
+                children: const [MyHeatMap(), Text("Page 2"), Text("Page 3")],
+              ),
+            ),
+            Text("Test")
           ],
         ),
       ),

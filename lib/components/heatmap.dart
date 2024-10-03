@@ -15,8 +15,9 @@ class MyHeatMap extends StatelessWidget {
         DateTime(2024, 9, 9): 13,
         DateTime(2024, 9, 13): 6,
       },
-      startDate: DateTime.now().add(const Duration(days: -30)),
+      startDate: DateTime.now().add(const Duration(days: -40)),
       endDate: DateTime.now(),
+      margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 4),
       colorMode: ColorMode.opacity,
       defaultColor: Provider.of<ThemeProvider>(context).themeData.primaryColor,
       showColorTip: false,
@@ -25,10 +26,6 @@ class MyHeatMap extends StatelessWidget {
       scrollable: true,
       colorsets: const {
         1: Colors.green,
-      },
-      onClick: (value) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text(value.toString())));
       },
     );
   }

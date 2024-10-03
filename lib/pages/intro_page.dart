@@ -17,7 +17,7 @@ class _IntroPageState extends State<IntroPage> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setBool('isIntroSeen', true);
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => const HomePage()));
+        context, MaterialPageRoute(builder: (context) => HomePage()));
   }
 
   @override
