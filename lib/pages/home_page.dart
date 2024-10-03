@@ -21,7 +21,11 @@ class HomePage extends StatelessWidget {
               icon: const Icon(Icons.settings)),
         ],
       ),
-      drawer: Drawer(),
+      drawer: const Drawer(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }
