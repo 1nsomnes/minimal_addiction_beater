@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_heatmap_calendar/flutter_heatmap_calendar.dart';
 import 'package:minimal_addiciton_beater/components/heatmap.dart';
 import 'package:minimal_addiciton_beater/pages/settings_page.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -44,7 +44,15 @@ class HomePage extends StatelessWidget {
                 children: const [MyHeatMap(), Text("Page 2"), Text("Page 3")],
               ),
             ),
-            Text("Test")
+            // TODO: make it match the color scheme?
+            SmoothPageIndicator(
+              controller: _controller,
+              count: 3,
+              effect: const WormEffect(
+                dotWidth: 13,
+                dotHeight: 13,
+              ),
+            )
           ],
         ),
       ),
