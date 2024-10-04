@@ -10,7 +10,7 @@ class MyInputDialog extends StatelessWidget {
 
   final String title;
   final String placeholder;
-  final bool Function(String) submit;
+  final Future<bool> Function(String) submit;
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +36,8 @@ class MyInputDialog extends StatelessWidget {
             child: const Text('CANCEL'),
           ),
           TextButton(
-            onPressed: () {
-              if (submit(_text)) {
+            onPressed: () async {
+              if (await submit(_text)) {
                 Navigator.of(context).pop();
               }
             },

@@ -46,9 +46,20 @@ class HomePage extends StatelessWidget {
                     placeholder: "Addiction...",
                     submit: (text) {
                       if (text.isNotEmpty) {
-                        Provider.of<AddictionDatabase>(context, listen: false)
-                            .addAddiction(text, DateTime.now());
-                        return true;
+                        return Provider.of<AddictionDatabase>(context,
+                                listen: false)
+                            .addAddiction(text, DateTime.now())
+                            .then((_) {
+                          return true;
+                        }).catchError((e) {
+                          showDialog(
+                              context: context,
+                              builder: (context) => MyWarningDialog(
+                                  title: "Addiction Error",
+                                  description:
+                                      "We had the following error adding your addiction ${e.toString()}"));
+                          return false;
+                        });
                       }
 
                       showDialog(
@@ -57,7 +68,7 @@ class HomePage extends StatelessWidget {
                               title: "Addiction Invalid",
                               description: "Your addiction may not be empty"));
 
-                      return false;
+                      return Future.value(false);
                     },
                   ));
         },
