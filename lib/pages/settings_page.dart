@@ -20,8 +20,10 @@ class SettingsPage extends StatelessWidget {
           MySettingsSwitch(
             name: "Dark Mode",
             value: Provider.of<ThemeProvider>(context).isDarkMode,
-            onChanged: (val) {
+            onChanged: (val) async {
               Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              prefs.setBool("darkMode", true);
             },
           ),
           MySettingsSwitch(

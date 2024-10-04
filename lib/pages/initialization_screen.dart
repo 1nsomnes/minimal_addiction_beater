@@ -5,14 +5,21 @@ import 'package:minimal_addiciton_beater/pages/intro_page.dart';
 import 'package:minimal_addiciton_beater/theme/theme_provider.dart';
 import 'package:minimal_addiciton_beater/utilities/app_scroll_behavior.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class InitializationScreen extends StatelessWidget {
   const InitializationScreen({super.key});
 
   Future<void> initializeApp(BuildContext context) async {
-    debugPrint("started");
     await Provider.of<AddictionDatabase>(context, listen: false)
         .fetchAddictions();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool isDarkMode = prefs.getBool("darkMode") ?? false;
+
+    if (isDarkMode !=
+        Provider.of<ThemeProvider>(context, listen: false).isDarkMode) {
+      Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+    }
     return;
   }
 
