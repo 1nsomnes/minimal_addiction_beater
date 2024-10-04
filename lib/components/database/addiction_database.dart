@@ -16,6 +16,20 @@ class AddictionDatabase extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> fetchAddictionsNoNoti() async {
+    List<Addiction> fetched = await isar.addictions.where().findAll();
+    currentAddictions.clear();
+    currentAddictions.addAll(fetched);
+  }
+
+  Future<void> fetchAddictions() async {
+    List<Addiction> fetched = await isar.addictions.where().findAll();
+    currentAddictions.clear();
+    currentAddictions.addAll(fetched);
+
+    notifyListeners();
+  }
+
   // initalize
   static Future<void> initialize() async {
     final dir = await getApplicationCacheDirectory();
@@ -26,14 +40,6 @@ class AddictionDatabase extends ChangeNotifier {
   }
 
   final List<Addiction> currentAddictions = [];
-
-  Future<void> fetchAddictions() async {
-    List<Addiction> fetched = await isar.addictions.where().findAll();
-    currentAddictions.clear();
-    currentAddictions.addAll(fetched);
-
-    notifyListeners();
-  }
 
   Future<void> addAddiction(String addiction, DateTime date) async {
     final newAddiction = Addiction()

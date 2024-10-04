@@ -3,7 +3,6 @@ import 'package:minimal_addiciton_beater/components/database/addiction_database.
 import 'package:minimal_addiciton_beater/components/popups/warning_dialog.dart';
 import 'package:minimal_addiciton_beater/pages/home_page.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class IntroPage extends StatefulWidget {
   const IntroPage({super.key});
@@ -16,8 +15,6 @@ class _IntroPageState extends State<IntroPage> {
   String _addiction = "";
 
   Future<void> _navigateToHome(BuildContext context) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setBool('isIntroSeen', true);
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => HomePage()));
   }
