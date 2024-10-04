@@ -4,6 +4,7 @@ import 'package:minimal_addiciton_beater/components/database/addiction_database.
 import 'package:minimal_addiciton_beater/components/heatmap.dart';
 import 'package:minimal_addiciton_beater/components/home/home_drawer.dart';
 import 'package:minimal_addiciton_beater/components/popups/get_input_dialog.dart';
+import 'package:minimal_addiciton_beater/components/popups/warning_dialog.dart';
 import 'package:minimal_addiciton_beater/pages/settings_page.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -40,9 +41,24 @@ class HomePage extends StatelessWidget {
         onPressed: () {
           showDialog(
               context: context,
-              builder: (context) => const MyInputDialog(
+              builder: (context) => MyInputDialog(
                     title: "Enter an Addiction",
                     placeholder: "Addiction...",
+                    submit: (text) {
+                      if (text.isNotEmpty) {
+                        Provider.of<AddictionDatabase>(context, listen: false)
+                            .addAddiction(text, DateTime.now());
+                        return true;
+                      }
+
+                      showDialog(
+                          context: context,
+                          builder: (context) => const MyWarningDialog(
+                              title: "Addiction Invalid",
+                              description: "Your addiction may not be empty"));
+
+                      return false;
+                    },
                   ));
         },
         child: const Icon(Icons.add),

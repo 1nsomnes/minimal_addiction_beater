@@ -5,18 +5,23 @@ class MyInputDialog extends StatelessWidget {
     super.key,
     required this.title,
     required this.placeholder,
+    required this.submit,
   });
 
   final String title;
   final String placeholder;
+  final bool Function(String) submit;
 
   @override
   Widget build(BuildContext context) {
+    String _text = "";
+
     return AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
         elevation: 16,
         title: Text(title),
         content: TextField(
+          onChanged: (value) => _text = value,
           decoration: InputDecoration(
               hintText: placeholder,
               hintStyle: TextStyle(
@@ -32,7 +37,9 @@ class MyInputDialog extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
-              debugPrint("Ok pressed");
+              if (submit(_text)) {
+                Navigator.of(context).pop();
+              }
             },
             child: const Text('OK'),
           ),

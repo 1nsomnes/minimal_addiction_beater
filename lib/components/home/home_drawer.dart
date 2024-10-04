@@ -10,6 +10,13 @@ class HomeDrawer extends StatelessWidget {
     return Drawer(
       child: Column(
         children: [
+          const Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              "Your Battles",
+              style: TextStyle(fontSize: 22),
+            ),
+          ),
           Expanded(
             child: ListView.builder(
               itemCount: Provider.of<AddictionDatabase>(context)
