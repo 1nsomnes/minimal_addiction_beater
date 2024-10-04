@@ -77,13 +77,11 @@ class HomePage extends StatelessWidget {
                 dotHeight: 13,
               ),
             ),
-            Text("Start Date: " + current.startDate.toString()),
-            Text("First Started: " +
-                DateTime.now().difference(current.startDate).inDays.toString() +
-                " days ago"),
-            Text("Last Relapse: " +
-                DateTime.now().difference(mostRecentRelapse).inDays.toString() +
-                " days ago"),
+            Text("Start Date: ${current.startDate}"),
+            Text(
+                "First Started: ${DateTime.now().difference(current.startDate).inDays} days ago"),
+            Text(
+                "Last Relapse: ${DateTime.now().difference(mostRecentRelapse).inDays} days ago"),
           ],
         ),
       ),
