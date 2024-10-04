@@ -54,7 +54,7 @@ class _IntroPageState extends State<IntroPage> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 70, vertical: 10),
             child: TextButton(
-              onPressed: () {
+              onPressed: () async {
                 if (_addiction.isEmpty) {
                   showDialog(
                       context: context,
@@ -66,7 +66,7 @@ class _IntroPageState extends State<IntroPage> {
                         );
                       });
                 } else {
-                  Provider.of<AddictionDatabase>(context, listen: false)
+                  await Provider.of<AddictionDatabase>(context, listen: false)
                       .addAddiction(_addiction, DateTime.now());
                   _navigateToHome(context);
                 }

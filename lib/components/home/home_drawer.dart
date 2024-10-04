@@ -2,14 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:minimal_addiciton_beater/components/database/addiction_database.dart';
 import 'package:provider/provider.dart';
 
-class HomeDrawer extends StatefulWidget {
+class HomeDrawer extends StatelessWidget {
   const HomeDrawer({super.key});
 
-  @override
-  State<HomeDrawer> createState() => _HomeDrawerState();
-}
-
-class _HomeDrawerState extends State<HomeDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -26,11 +21,12 @@ class _HomeDrawerState extends State<HomeDrawer> {
 
                 if (Provider.of<AddictionDatabase>(context).currentIndex ==
                     index) {
-                  textStyle =
-                      const TextStyle(decoration: TextDecoration.underline);
+                  textStyle = const TextStyle(
+                    fontSize: 20,
+                  );
                   isSelected = true;
                 } else {
-                  textStyle = TextStyle(color: Colors.grey[400]);
+                  textStyle = TextStyle(fontSize: 20, color: Colors.grey[400]);
                 }
 
                 return Center(
@@ -40,7 +36,8 @@ class _HomeDrawerState extends State<HomeDrawer> {
                         {
                           Provider.of<AddictionDatabase>(context, listen: false)
                               .currentIndex = index,
-                        }
+                        },
+                      Navigator.pop(context),
                     },
                     child: Text(
                       Provider.of<AddictionDatabase>(context)

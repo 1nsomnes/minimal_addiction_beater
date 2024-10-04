@@ -40,6 +40,8 @@ class _MyAppState extends State<MyApp> {
 
   Future<void> _checkIntroStatus() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    await Provider.of<AddictionDatabase>(context, listen: false)
+        .clearDatabase();
     prefs.setBool('isIntroSeen', false);
     bool isIntroSeen = prefs.getBool('isIntroSeen') ?? false;
 

@@ -38,12 +38,12 @@ class AddictionDatabase extends ChangeNotifier {
   Future<void> addAddiction(String addiction, DateTime date) async {
     final newAddiction = Addiction()
       ..name = addiction
-      ..dates = []
+      ..dates = [date]
       ..startDate = date;
 
     await isar.writeTxn(() => isar.addictions.put(newAddiction));
 
-    fetchAddictions();
+    await fetchAddictions();
   }
 
   Future<void> deleteAddiction(String addiction) async {
@@ -57,5 +57,9 @@ class AddictionDatabase extends ChangeNotifier {
     });
 
     fetchAddictions();
+  }
+
+  Future<void> clearDatabase() async {
+    await isar.writeTxn(() => isar.addictions.clear());
   }
 }
