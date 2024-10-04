@@ -1,16 +1,7 @@
-# minimal_addiciton_beater
+# Minimal Addiction Beater
 
-A new Flutter project.
+The aim of this project is simple, in a world full of things trying to grab your attention, "Addiction Beater," is an app that helps you get your attention back through simple habit building. This app is not ground breaking, it is not the next big thing- it's not meant to be. It's minimal and simple, it helps you track your journey, it does not do it for you.   
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Coming soong to Android and iOS. 
