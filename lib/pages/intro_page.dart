@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:minimal_addiciton_beater/components/database/addiction_database.dart';
 import 'package:minimal_addiciton_beater/components/popups/warning_dialog.dart';
@@ -13,6 +14,7 @@ class IntroPage extends StatefulWidget {
 
 class _IntroPageState extends State<IntroPage> {
   String _addiction = "";
+  DateTime _date = DateTime.now();
 
   Future<void> _navigateToHome(BuildContext context) async {
     Navigator.pushReplacement(
@@ -49,6 +51,18 @@ class _IntroPageState extends State<IntroPage> {
             ),
           ),
           Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SizedBox(
+              height: 80,
+              child: CupertinoDatePicker(
+                mode: CupertinoDatePickerMode.date,
+                onDateTimeChanged: (date) {
+                  _date = date;
+                },
+              ),
+            ),
+          ),
+          Padding(
             padding: const EdgeInsets.symmetric(horizontal: 70, vertical: 10),
             child: TextButton(
               onPressed: () async {
@@ -64,7 +78,7 @@ class _IntroPageState extends State<IntroPage> {
                       });
                 } else {
                   await Provider.of<AddictionDatabase>(context, listen: false)
-                      .addAddiction(_addiction, DateTime.now());
+                      .addAddiction(_addiction, _date);
                   _navigateToHome(context);
                 }
               },

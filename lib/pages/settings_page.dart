@@ -23,7 +23,7 @@ class SettingsPage extends StatelessWidget {
             onChanged: (val) async {
               Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
               SharedPreferences prefs = await SharedPreferences.getInstance();
-              prefs.setBool("darkMode", true);
+              prefs.setBool("darkMode", val);
             },
           ),
           MySettingsSwitch(
@@ -45,7 +45,13 @@ class SettingsPage extends StatelessWidget {
                                 .clearDatabase();
                             SharedPreferences prefs =
                                 await SharedPreferences.getInstance();
-                            await prefs.setBool('isIntroSeen', false);
+                            await prefs.setBool('darkMode', false);
+                            if (Provider.of<ThemeProvider>(context,
+                                    listen: false)
+                                .isDarkMode) {
+                              Provider.of<ThemeProvider>(context, listen: false)
+                                  .toggleTheme();
+                            }
                             Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
