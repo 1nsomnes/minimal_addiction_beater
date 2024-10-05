@@ -92,7 +92,13 @@ class HomePage extends StatelessWidget {
               height: 325,
               child: PageView(
                 controller: _controller,
-                children: const [MyHeatMap(), Text("Page 2"), Text("Page 3")],
+                children: [
+                  MyHeatMap(
+                    currentAddiction: current,
+                  ),
+                  const Text("Page 2"),
+                  const Text("Page 3")
+                ],
               ),
             ),
             // TODO: make it match the color scheme?
