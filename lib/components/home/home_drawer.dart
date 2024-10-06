@@ -37,20 +37,25 @@ class HomeDrawer extends StatelessWidget {
                 }
 
                 return Center(
-                  child: GestureDetector(
-                    onTap: () => {
-                      if (!isSelected)
-                        {
-                          Provider.of<AddictionDatabase>(context, listen: false)
-                              .currentIndex = index,
-                        },
-                      Navigator.pop(context),
-                    },
-                    child: Text(
-                      Provider.of<AddictionDatabase>(context)
-                          .currentAddictions[index]
-                          .name,
-                      style: textStyle,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: GestureDetector(
+                      onTap: () => {
+                        if (!isSelected)
+                          {
+                            Provider.of<AddictionDatabase>(context,
+                                    listen: false)
+                                .currentIndex = index,
+                          },
+                        Navigator.pop(context),
+                      },
+                      child: Text(
+                        Provider.of<AddictionDatabase>(context)
+                            .currentAddictions[index]
+                            .name,
+                        style: textStyle,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   ),
                 );
