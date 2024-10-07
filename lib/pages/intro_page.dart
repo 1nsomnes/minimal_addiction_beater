@@ -76,6 +76,16 @@ class _IntroPageState extends State<IntroPage> {
                               "Sorry, your addiction is invalid. You must enter something to continue.",
                         );
                       });
+                } else if (_date.isAfter(DateTime.now())) {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return const MyWarningDialog(
+                          title: "Invalid Addiction",
+                          description:
+                              "Sorry, you cannot set the start date after the current date.",
+                        );
+                      });
                 } else {
                   await Provider.of<AddictionDatabase>(context, listen: false)
                       .addAddiction(_addiction, _date);
