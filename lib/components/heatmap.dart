@@ -16,7 +16,7 @@ class MyHeatMap extends StatelessWidget {
     DateTime now = DateTime.now();
     DateTime currentDay = DateTime(now.year, now.month, now.day);
 
-    var result = new Map<DateTime, int>();
+    var result = <DateTime, int>{};
     for (int i = 0; i < 40; i++) {
       if (currentDay.isBefore(currentAddiction.startDate)) {
         break;
@@ -28,7 +28,7 @@ class MyHeatMap extends StatelessWidget {
       if (!dateExists) {
         result[currentDay] = 1;
       }
-      currentDay = currentDay.subtract(Duration(days: 1));
+      currentDay = currentDay.subtract(const Duration(days: 1));
     }
     return result;
   }

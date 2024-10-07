@@ -3,6 +3,7 @@ import 'package:minimal_addiciton_beater/components/database/addiction.dart';
 import 'package:minimal_addiciton_beater/components/database/addiction_database.dart';
 import 'package:minimal_addiciton_beater/components/heatmap.dart';
 import 'package:minimal_addiciton_beater/components/home/home_drawer.dart';
+import 'package:minimal_addiciton_beater/components/home/linear_progress_bar.dart';
 import 'package:minimal_addiciton_beater/components/home/manage_current_addiction.dart';
 import 'package:minimal_addiciton_beater/components/popups/get_input_dialog.dart';
 import 'package:minimal_addiciton_beater/components/popups/warning_dialog.dart';
@@ -94,11 +95,11 @@ class HomePage extends StatelessWidget {
               child: PageView(
                 controller: _controller,
                 children: [
+                  LinearProgressBarPage(),
                   MyHeatMap(
                     currentAddiction: current,
                   ),
                   const ManageCurrentAddictionPage(),
-                  const Text("Page 3")
                 ],
               ),
             ),

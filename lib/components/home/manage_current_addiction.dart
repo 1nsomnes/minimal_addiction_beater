@@ -8,7 +8,7 @@ class ManageCurrentAddictionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           const Text("Options:", style: TextStyle(fontSize: 20)),
           GestureText(

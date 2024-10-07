@@ -11,7 +11,7 @@ class HomeDrawer extends StatelessWidget {
       child: Column(
         children: [
           const Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8.0),
             child: Text(
               "Your Battles",
               style: TextStyle(fontSize: 22),

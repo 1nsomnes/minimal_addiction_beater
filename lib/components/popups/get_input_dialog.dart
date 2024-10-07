@@ -14,14 +14,14 @@ class MyInputDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String _text = "";
+    String text = "";
 
     return AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
         elevation: 16,
         title: Text(title),
         content: TextField(
-          onChanged: (value) => _text = value,
+          onChanged: (value) => text = value,
           decoration: InputDecoration(
               hintText: placeholder,
               hintStyle: TextStyle(
@@ -37,7 +37,7 @@ class MyInputDialog extends StatelessWidget {
           ),
           TextButton(
             onPressed: () async {
-              if (await submit(_text)) {
+              if (await submit(text)) {
                 Navigator.of(context).pop();
               }
             },
