@@ -3,6 +3,7 @@ import 'package:minimal_addiciton_beater/components/database/addiction.dart';
 import 'package:minimal_addiciton_beater/components/database/addiction_database.dart';
 import 'package:minimal_addiciton_beater/components/heatmap.dart';
 import 'package:minimal_addiciton_beater/components/home/home_drawer.dart';
+import 'package:minimal_addiciton_beater/components/home/manage_current_addiction.dart';
 import 'package:minimal_addiciton_beater/components/popups/get_input_dialog.dart';
 import 'package:minimal_addiciton_beater/components/popups/warning_dialog.dart';
 import 'package:minimal_addiciton_beater/pages/settings_page.dart';
@@ -96,7 +97,7 @@ class HomePage extends StatelessWidget {
                   MyHeatMap(
                     currentAddiction: current,
                   ),
-                  const Text("Page 2"),
+                  const ManageCurrentAddictionPage(),
                   const Text("Page 3")
                 ],
               ),
