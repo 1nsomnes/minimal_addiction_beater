@@ -66,31 +66,37 @@ class _LinearProgressBarPageState extends State<LinearProgressBarPage> {
               center: Text("$yearsDiff years"),
               lineHeight: 25,
               percent: yearsDiff / (yearsDiff + 1),
+              barRadius: const Radius.circular(100),
             ),
             LinearPercentIndicator(
               center: Text("$monthsDiff months"),
               lineHeight: 25,
               percent: monthsDiff / 12,
+              barRadius: const Radius.circular(100),
             ),
             LinearPercentIndicator(
               center: Text("$daysDiff days"),
               lineHeight: 25,
               percent: daysDiff / 30,
+              barRadius: const Radius.circular(100),
             ),
             LinearPercentIndicator(
               center: Text("$hoursDiff hours"),
               lineHeight: 25,
               percent: hoursDiff / 24,
+              barRadius: const Radius.circular(100),
             ),
             LinearPercentIndicator(
               center: Text("$minutesDiff minutes"),
               lineHeight: 25,
               percent: minutesDiff / 60,
+              barRadius: const Radius.circular(100),
             ),
             LinearPercentIndicator(
               center: Text("$secondsDiff seconds"),
               lineHeight: 25,
               percent: secondsDiff / 60,
+              barRadius: const Radius.circular(100),
             ),
           ],
         ));

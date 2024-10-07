@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
 class GestureText extends StatelessWidget {
-  GestureText({
+  const GestureText({
     super.key,
     required this.onTap,
-    this.textColor,
+    required this.textColor,
     required this.fontSize,
     required this.text,
   });
 
-  Function() onTap;
-  Color? textColor;
-  double fontSize;
-  String text;
+  final Function() onTap;
+  final Color? textColor;
+  final double fontSize;
+  final String text;
 
   @override
   Widget build(BuildContext context) {

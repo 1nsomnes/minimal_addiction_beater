@@ -14,6 +14,7 @@ class ManageCurrentAddictionPage extends StatelessWidget {
           GestureText(
             text: "Edit",
             onTap: () {},
+            textColor: null,
             fontSize: 16,
           ),
           GestureText(
