@@ -8,6 +8,8 @@ class ThemeProvider extends ChangeNotifier {
 
   bool get isDarkMode => _themeData == darkMode;
 
+  bool isHidingAddiction = true;
+
   set themeData(ThemeData themeData) {
     _themeData = themeData;
     notifyListeners();
@@ -15,6 +17,11 @@ class ThemeProvider extends ChangeNotifier {
 
   void toggleTheme() {
     _themeData = isDarkMode ? lightMode : darkMode;
+    notifyListeners();
+  }
+
+  void toggleHideAddiction() {
+    isHidingAddiction = !isHidingAddiction;
     notifyListeners();
   }
 }

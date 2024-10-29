@@ -8,6 +8,7 @@ import 'package:minimal_addiciton_beater/components/home/manage_current_addictio
 import 'package:minimal_addiciton_beater/components/popups/get_input_dialog.dart';
 import 'package:minimal_addiciton_beater/components/popups/warning_dialog.dart';
 import 'package:minimal_addiciton_beater/pages/settings_page.dart';
+import 'package:minimal_addiciton_beater/theme/theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -21,6 +22,9 @@ class HomePage extends StatelessWidget {
     int currentIndex = Provider.of<AddictionDatabase>(context).currentIndex;
     Addiction current =
         Provider.of<AddictionDatabase>(context).currentAddictions[currentIndex];
+    String textValue = Provider.of<ThemeProvider>(context).isHidingAddiction
+        ? "*******"
+        : current.name;
     DateTime mostRecentRelapse = current.dates[current.dates.length - 1];
 
     return Scaffold(
@@ -76,7 +80,7 @@ class HomePage extends StatelessWidget {
         },
         child: const Icon(Icons.add),
       ),
-      body: Center(
+      body: Container(
         child: Column(
           children: [
             Row(
@@ -85,8 +89,7 @@ class HomePage extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 2),
-                  child:
-                      Text(current.name, style: const TextStyle(fontSize: 22)),
+                  child: Text(textValue, style: const TextStyle(fontSize: 22)),
                 ),
               ],
             ),
@@ -112,7 +115,10 @@ class HomePage extends StatelessWidget {
                 dotHeight: 13,
               ),
             ),
-            Text("Start Date: ${current.startDate}"),
+            Text(
+              "Start Date: ${current.startDate}",
+              textAlign: TextAlign.left,
+            ),
             Text(
                 "First Started: ${DateTime.now().difference(current.startDate).inDays} days ago"),
             Text(

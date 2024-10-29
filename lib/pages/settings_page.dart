@@ -27,7 +27,14 @@ class SettingsPage extends StatelessWidget {
             },
           ),
           MySettingsSwitch(
-              name: "Hide Addiction", value: false, onChanged: (val) {}),
+              name: "Hide Addiction",
+              value: Provider.of<ThemeProvider>(context).isHidingAddiction,
+              onChanged: (val) async {
+                Provider.of<ThemeProvider>(context, listen: false)
+                    .toggleHideAddiction();
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                prefs.setBool("hideAddiction", val);
+              }),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 120),
             child: TextButton(
@@ -45,7 +52,7 @@ class SettingsPage extends StatelessWidget {
                                 .clearDatabase();
                             SharedPreferences prefs =
                                 await SharedPreferences.getInstance();
-                            await prefs.setBool('darkMode', false);
+                            await prefs.clear();
                             if (Provider.of<ThemeProvider>(context,
                                     listen: false)
                                 .isDarkMode) {
