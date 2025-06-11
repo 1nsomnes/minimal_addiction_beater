@@ -41,6 +41,20 @@ class AddictionDatabase extends ChangeNotifier {
 
   final List<Addiction> currentAddictions = [];
 
+  Future<void> addNewAddictionDate(String addiction, DateTime date) async {
+    await isar.writeTxn(() async {
+      Addiction? currentAddiction = await isar.addictions.filter().nameEqualTo(addiction).findFirst();
+
+      if(currentAddiction != null) {
+
+        currentAddiction.dates.add(date);
+        await isar.addictions.put(currentAddiction);
+
+      }
+      
+    });
+  }
+
   Future<void> addAddiction(String addiction, DateTime date) async {
     final newAddiction = Addiction()
       ..name = addiction

@@ -25,7 +25,23 @@ class ManageCurrentAddictionPage extends StatelessWidget {
           ),*/
           GestureText(
             text: "Reset",
-            onTap: () {},
+            onTap: () {
+              showDialog(context: context, builder: (context) {
+                return MyYesNoDialog(title: "Are you sure?", 
+                  description: "Doing this will reset your addiction streak to today", 
+                  okPressed: () {
+                    var provider = Provider.of<AddictionDatabase>(context, listen: false);
+                    int currentIndex = provider.currentIndex;
+                    String currentAddiction = provider.currentAddictions[currentIndex].name;
+
+                    provider.addNewAddictionDate(currentAddiction, DateTime.now())                    ;
+
+
+                    Navigator.pushReplacement(
+                        context, MaterialPageRoute(builder: (context) => HomePage()));
+                  });
+              });
+            },
             textColor: Colors.red,
             fontSize: 16,
           ),
