@@ -39,12 +39,15 @@ class _LinearProgressBarPageState extends State<LinearProgressBarPage> {
 
     _timer = Timer.periodic(const Duration(seconds: 1), (Timer timer) {
       setState(() {
-        secondsDiff = (DateTime.now().second - mostRecentRelapse.second);
-        minutesDiff = (DateTime.now().minute - mostRecentRelapse.minute);
-        hoursDiff = (DateTime.now().hour - mostRecentRelapse.hour);
-        daysDiff = (DateTime.now().day - mostRecentRelapse.day);
+        var diff = DateTime.now().difference(mostRecentRelapse);
+
+        secondsDiff = (diff.inSeconds) % 60;
+        minutesDiff = (diff.inMinutes) % 60;
+        hoursDiff = (diff.inHours) % 24;
+        daysDiff = (diff.inDays) % 30;
         monthsDiff = DateTime.now().month - mostRecentRelapse.month;
         yearsDiff = DateTime.now().year - mostRecentRelapse.year;
+        //print("sec: $secondsDiff, min: $minutesDiff, hrs: $hoursDiff, days: $daysDiff, mth: $monthsDiff, yrs: $yearsDiff");
       });
     });
   }

@@ -34,11 +34,12 @@ class ManageCurrentAddictionPage extends StatelessWidget {
                     int currentIndex = provider.currentIndex;
                     String currentAddiction = provider.currentAddictions[currentIndex].name;
 
-                    provider.addNewAddictionDate(currentAddiction, DateTime.now())                    ;
+                    provider.addNewAddictionDate(currentAddiction, DateTime.now());
 
-
+                    Navigator.pop(context);
                     Navigator.pushReplacement(
                         context, MaterialPageRoute(builder: (context) => HomePage()));
+
                   });
               });
             },
@@ -67,8 +68,8 @@ class ManageCurrentAddictionPage extends StatelessWidget {
                     Addiction currentAddiction = provider.currentAddictions[currentIndex];
                     provider.deleteAddiction(currentAddiction.name);
                     provider.currentIndex = 0;
-
-
+                   
+                    Navigator.pop(context);
                     Navigator.pushReplacement(
                         context, MaterialPageRoute(builder: (context) => HomePage()));
 

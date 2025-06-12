@@ -53,6 +53,8 @@ class AddictionDatabase extends ChangeNotifier {
       }
       
     });
+    
+    fetchAddictions();
   }
 
   Future<void> addAddiction(String addiction, DateTime date) async {
